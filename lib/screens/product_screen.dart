@@ -45,7 +45,7 @@ class ProductScreen extends StatelessWidget {
                                 size: 30,
                               )),
                           const SizedBox(
-                            width: 30,
+                            width: 20,
                           ),
                           Center(
                             child: Image(

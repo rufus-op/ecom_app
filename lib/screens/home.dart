@@ -4,12 +4,13 @@ import 'package:apple_store/screens/login_screen.dart';
 import 'package:apple_store/screens/product_screen.dart';
 import 'package:apple_store/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class Home extends StatelessWidget {
   TextEditingController searchController = TextEditingController();
+
+  Home({super.key});
 
   @override
   Widget build(BuildContext context) {
