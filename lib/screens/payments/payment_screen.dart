@@ -30,9 +30,9 @@ class PaymentScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          // onTap: () {
-                          //   Navigator.pushNamed(context, '/');
-                          // },
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           child: const Icon(
                             Icons.arrow_back,
                           ),
@@ -74,14 +74,26 @@ class PaymentScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 70,
                       child: ListView.builder(
                         itemCount: providerIns.cart.length,
+                        scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, int index) {
-                          return Image(
-                            image: NetworkImage(providerIns.cart[index].image),
-                            fit: BoxFit.contain,
-                            height: 50,
+                          return Container(
+                            height: 60,
+                            width: 80,
+                            padding: const EdgeInsets.all(8),
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: Colors.black.withOpacity(.3))),
+                            child: Image(
+                              image:
+                                  NetworkImage(providerIns.cart[index].image),
+                              fit: BoxFit.contain,
+                            ),
                           );
                         },
                       ),
