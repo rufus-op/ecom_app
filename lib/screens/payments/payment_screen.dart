@@ -12,6 +12,7 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final providerIns = Provider.of<ApiProvider>(context);
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -29,9 +30,9 @@ class PaymentScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/');
-                          },
+                          // onTap: () {
+                          //   Navigator.pushNamed(context, '/');
+                          // },
                           child: const Icon(
                             Icons.arrow_back,
                           ),
@@ -72,13 +73,19 @@ class PaymentScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
-                      children: const [
-                        products_in_paymentPage(),
-                        products_in_paymentPage(),
-                        products_in_paymentPage(),
-                      ],
-                    )
+                    SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                        itemCount: providerIns.cart.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Image(
+                            image: NetworkImage(providerIns.cart[index].image),
+                            fit: BoxFit.contain,
+                            height: 50,
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -179,7 +186,9 @@ class PaymentScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       Text(
-                        Provider.of<ApiProvider>(context,listen: false).address.toString(),
+                        Provider.of<ApiProvider>(context, listen: false)
+                            .address
+                            .toString(),
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         softWrap: true,
@@ -189,7 +198,9 @@ class PaymentScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        Provider.of<ApiProvider>(context,listen: false).city.toString(),
+                        Provider.of<ApiProvider>(context, listen: false)
+                            .city
+                            .toString(),
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         softWrap: true,
@@ -221,14 +232,11 @@ class PaymentScreen extends StatelessWidget {
                   height: 80,
                   child: Row(
                     children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Icon(
-                            Icons.credit_card,
-                            size: 50,
-                            color: Colors.blue.withOpacity(.7),
-                          )),
+                      Icon(
+                        Icons.credit_card,
+                        size: 50,
+                        color: Colors.blue.withOpacity(.7),
+                      ),
                       const SizedBox(
                         width: 15,
                       ),
@@ -250,8 +258,10 @@ class PaymentScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        width: 105,
+                      const Expanded(
+                        child: SizedBox(
+                          width: 105,
+                        ),
                       ),
                       const Icon(
                         Icons.arrow_back,
@@ -262,24 +272,24 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 55,
               ),
               //cost calculations
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Shipping Cost',
                     style: TextStyle(color: Colors.grey),
                   ),
                   Text(
-                    '\$100',
-                    style: TextStyle(color: Colors.grey),
+                    '\$${providerIns.shippingcost.toString()}',
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 8,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -289,13 +299,13 @@ class PaymentScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.grey),
                   ),
                   Text(
-                    '\$${Provider.of<ApiProvider>(context, listen: false).newprice.toString()}',
+                    '\$${providerIns.calculateSubTotal().toString()}',
                     style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 8,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -305,7 +315,7 @@ class PaymentScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.green),
                   ),
                   Text(
-                    '-\$${Provider.of<ApiProvider>(context, listen: false).discount.toString()}',
+                    '-\$${providerIns.discount.toString()}',
                     style: const TextStyle(color: Colors.green),
                   ),
                 ],
@@ -313,6 +323,7 @@ class PaymentScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+
               grey_card(
                 height: 80,
                 child: Row(
@@ -328,7 +339,7 @@ class PaymentScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         Text(
-                          '\$${Provider.of<ApiProvider>(context, listen: false).calculateTotal().toString()}',
+                          '\$${providerIns.calculateTotal().toString()}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -342,6 +353,9 @@ class PaymentScreen extends StatelessWidget {
                     )
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               )
             ],
           ),

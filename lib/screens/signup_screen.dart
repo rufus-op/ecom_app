@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:apple_store/screens/home_screen.dart';
+import 'package:apple_store/screens/start_screen.dart';
+import 'package:apple_store/screens/login_screen.dart';
 import 'package:apple_store/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -151,14 +152,16 @@ class RegisterPage extends StatelessWidget {
                         emailController.text, passwordController.text, context);
                     // if (!mounted) return;
 
+                    // ignore: use_build_context_synchronously
                     Provider.of<ApiProvider>(context, listen: false)
                         .dontshowLoading();
                     if (newUser != null) {
+                      // ignore: use_build_context_synchronously
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                HomeScreen(nameController.text),
+                                FirstScreen(),
                           ));
                     }
                   },
@@ -193,7 +196,11 @@ class RegisterPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/login');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ));
                       },
                       child: const Text(
                         'Sign In',

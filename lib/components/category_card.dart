@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomChip extends StatelessWidget {
   const CustomChip(
-      {required this.name, required this.onTap, required this.iconData});
+      {super.key, required this.name, required this.onTap, required this.iconData});
   final VoidCallback onTap;
   final String name;
   final IconData iconData;

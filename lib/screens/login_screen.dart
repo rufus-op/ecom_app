@@ -1,11 +1,11 @@
 import 'package:apple_store/provider/api_provider.dart';
+import 'package:apple_store/screens/start_screen.dart';
+import 'package:apple_store/screens/signup_screen.dart';
 import 'package:apple_store/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  
-
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
@@ -24,17 +24,6 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Logo here
-                // const Hero(
-                //   tag: 'logo',
-                //   child: Image(
-                //     image: NetworkImage(
-                //         'https://www.freepnglogos.com/uploads/apple-logo-png/file-apple-logo-black-svg-wikimedia-commons-1.png'),
-                //     height: 100,
-                //     width: 140,
-                //   ),
-                // ),
-
                 const SizedBox(
                   height: 18,
                 ),
@@ -118,10 +107,16 @@ class LoginPage extends StatelessWidget {
                     final newUser = await FirebaseAuthF().signIn(
                         emailController.text, passwordController.text, context);
                     // if (!mounted) return;
+                    // ignore: use_build_context_synchronously
                     Provider.of<ApiProvider>(context, listen: false)
                         .dontshowLoading();
                     if (newUser != null) {
-                      Navigator.pushNamed(context, '/home');
+                      // ignore: use_build_context_synchronously
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FirstScreen(),
+                          ));
                     }
                     // else {
                     //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -157,7 +152,11 @@ class LoginPage extends StatelessWidget {
                     const Text('Don\'t have an account?'),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/register');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterPage(),
+                            ));
                       },
                       child: const Text(
                         'Create account',

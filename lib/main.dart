@@ -1,16 +1,16 @@
 import 'package:apple_store/provider/api_provider.dart';
-import 'package:apple_store/provider/cart_provider.dart';
+// import 'package:apple_store/provider/cart_provider.dart';
 
 import 'package:apple_store/screens/login_screen.dart';
-import 'package:apple_store/screens/payments/payment_screen.dart';
+// import 'package:apple_store/screens/payments/payment_screen.dart';
 // import 'package:apple_store/screens/product_screen.dart';
-import 'package:apple_store/screens/signup_screen.dart';
+// import 'package:apple_store/screens/signup_screen.dart';
 import 'package:apple_store/services/firebase_auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/home_screen.dart';
+import 'screens/start_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,20 +44,21 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuthF().auth.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return HomeScreen(Provider.of<ApiProvider>(context).userName);
-            } else
+              return FirstScreen();
+            } else {
               return LoginPage();
+            }
           },
         ),
 
-        routes: {
-          '/home': (context) =>
-              HomeScreen(Provider.of<ApiProvider>(context).userName),
-          '/register': (context) => RegisterPage(),
-          // '/product': (context) => ProductScreen(),
-          '/payment': (context) => PaymentScreen(),
-          // '/cart': (context) =>  CartScreen(),
-        },
+        // routes: {
+        //   '/home': (context) =>
+        //       HomeScreen(Provider.of<ApiProvider>(context).userName),
+        //   '/register': (context) => RegisterPage(),
+        //   // '/product': (context) => ProductScreen(),
+        //   '/payment': (context) => PaymentScreen(),
+        //   // '/cart': (context) =>  CartScreen(),
+        // },
       ),
     );
   }

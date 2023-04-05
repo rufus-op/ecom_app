@@ -10,10 +10,11 @@ class grey_card extends StatelessWidget {
     return Container(
         height: height,
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         decoration: BoxDecoration(
+          border: Border.all(color: Colors.black.withOpacity(.3)),
           borderRadius: BorderRadius.circular(15),
-          color: Colors.grey.withOpacity(.2),
+          color: Colors.white,
         ),
         child: child);
   }
