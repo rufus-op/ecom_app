@@ -12,7 +12,7 @@ import 'package:apple_store/screens/home.dart';
 // import 'package:apple_store/services/firebase_auth_service.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 // import 'package:http/http.dart' as http;
 // import '../components/category_card.dart';
 
@@ -29,7 +29,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     // final providerIns = Provider.of<ApiProvider>(context);
-    List screens = [Home(), FavouriteScreen(1), CartScreen(1)];
+    List screens = [Home(), FavouriteScreen(1), CartScreen()];
     return Scaffold(
       body: screens.elementAt(_selectedPage),
       bottomNavigationBar: NavigationBar(

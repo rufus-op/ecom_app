@@ -15,11 +15,11 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerIns = Provider.of<ApiProvider>(context);
     ProductModel pro = ProductModel(
-        image: providerIns.jsonResponse[index]['image'],
-        title: providerIns.jsonResponse[index]['title'],
-        rating: providerIns.jsonResponse[index]['rating']['rate'],
-        order: providerIns.jsonResponse[index]['rating']['count'],
-        price: providerIns.jsonResponse[index]['price'],
+        image: providerIns.jsonResponse![index]['image'],
+        title: providerIns.jsonResponse![index]['title'],
+        rating: providerIns.jsonResponse![index]['rating']['rate'],
+        order: providerIns.jsonResponse![index]['rating']['count'],
+        price: providerIns.jsonResponse![index]['price'],
         ind: index);
     return Scaffold(
       body: SafeArea(
@@ -50,7 +50,7 @@ class ProductScreen extends StatelessWidget {
                           Center(
                             child: Image(
                               image: NetworkImage(
-                                providerIns.jsonResponse[index]['image'],
+                                providerIns.jsonResponse![index]['image'],
                               ),
                               fit: BoxFit.contain,
                               height: 200,
@@ -70,7 +70,7 @@ class ProductScreen extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          providerIns.jsonResponse[index]['title'],
+                          providerIns.jsonResponse![index]['title'],
                           maxLines: 2,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -81,12 +81,13 @@ class ProductScreen extends StatelessWidget {
                           Provider.of<ApiProvider>(context, listen: false)
                               .favourite
                               .add(pro);
-                          Provider.of<ApiProvider>(context, listen: false)
-                              .favButton();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Added to Favourite',),));
+                          // Provider.of<ApiProvider>(context, listen: false)
+                          //     .isFav!= Provider.of<ApiProvider>(context, listen: false)
+                          //     .isFav;
                         },
-                        child: (Provider.of<ApiProvider>(context).isFav)
-                            ? const Icon(Icons.favorite_border)
-                            : const Icon(Icons.favorite_outlined),
+                        child: const Icon(Icons.favorite_outlined),
                       )
                     ],
                   ),
@@ -101,7 +102,7 @@ class ProductScreen extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        providerIns.jsonResponse[index]['rating']['rate']
+                        providerIns.jsonResponse![index]['rating']['rate']
                             .toString(),
                         style: const TextStyle(color: Colors.grey),
                       ),
@@ -109,7 +110,7 @@ class ProductScreen extends StatelessWidget {
                         width: 10,
                       ),
                       Text(
-                        '(${providerIns.jsonResponse[index]['rating']['count'].toString()})',
+                        '(${providerIns.jsonResponse![index]['rating']['count'].toString()})',
                         style: TextStyle(color: Colors.blue.withOpacity(.8)),
                       ),
                     ],
@@ -118,7 +119,7 @@ class ProductScreen extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    providerIns.jsonResponse[index]['description'],
+                    providerIns.jsonResponse![index]['description'],
                     maxLines: 5,
                     style: TextStyle(color: Colors.grey.withOpacity(.8)),
                   ),
@@ -188,7 +189,7 @@ class ProductScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '\$${providerIns.jsonResponse[index]['price'].toString()}',
+                              '\$${providerIns.jsonResponse![index]['price'].toString()}',
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -211,7 +212,7 @@ class ProductScreen extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CartScreen(index),
+                                  builder: (context) => CartScreen(),
                                 ));
                           },
                         )

@@ -9,8 +9,8 @@ import '../components/grey_card.dart';
 import '../provider/api_provider.dart';
 
 class CartScreen extends StatelessWidget {
-  CartScreen(this.index);
-  int index;
+  // CartScreen(this.indx);
+  // int indx;
 
   @override
   Widget build(BuildContext context) {

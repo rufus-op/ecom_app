@@ -1,5 +1,6 @@
 import 'package:apple_store/components/category_card.dart';
 import 'package:apple_store/provider/api_provider.dart';
+import 'package:apple_store/screens/cart_screen.dart';
 import 'package:apple_store/screens/login_screen.dart';
 import 'package:apple_store/screens/product_screen.dart';
 import 'package:apple_store/services/firebase_auth_service.dart';
@@ -51,12 +52,19 @@ class Home extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CircleAvatar(
-                        backgroundColor: Colors.grey.withOpacity(0.15),
-                        radius: 20,
-                        child: const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.black,
+                      InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CartScreen(),
+                            )),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey.withOpacity(0.15),
+                          radius: 20,
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.black,
+                          ),
                         ),
                       )
                     ],
@@ -169,11 +177,14 @@ class Home extends StatelessWidget {
                 future: providerIns.getUsers(),
                 builder: (context, snapshot) {
                   // if(snapshot.hasData){}
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
                   return providerIns.isLoading
                       ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: providerIns.jsonResponse.length,
+                          itemCount: providerIns.jsonResponse!.length,
                           itemBuilder: (context, index) {
                             return InkWell(
                                 onTap: () {
@@ -211,14 +222,14 @@ class Home extends StatelessWidget {
                                       Center(
                                         child: Image(
                                           image: NetworkImage(providerIns
-                                              .jsonResponse[index]['image']),
+                                              .jsonResponse![index]['image']),
                                           fit: BoxFit.contain,
                                           alignment: Alignment.center,
                                           height: 85,
                                         ),
                                       ),
                                       Text(
-                                        providerIns.jsonResponse[index]
+                                        providerIns.jsonResponse![index]
                                             ['title'],
                                         maxLines: 2,
                                         style: const TextStyle(
@@ -227,7 +238,7 @@ class Home extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                              providerIns.jsonResponse[index]
+                                              providerIns.jsonResponse![index]
                                                       ['rating']['rate']
                                                   .toString(),
                                               style: const TextStyle(
@@ -236,11 +247,11 @@ class Home extends StatelessWidget {
                                             width: 8,
                                           ),
                                           Text(
-                                              '(${providerIns.jsonResponse[index]['rating']['count'].toString()})'),
+                                              '(${providerIns.jsonResponse![index]['rating']['count'].toString()})'),
                                         ],
                                       ),
                                       Text(
-                                        '\$${providerIns.jsonResponse[index]['price'].toString()}',
+                                        '\$${providerIns.jsonResponse![index]['price'].toString()}',
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w400),
                                       ),
@@ -281,89 +292,99 @@ class Home extends StatelessWidget {
             ),
             //items grid
             SizedBox(
-              height: 400,
-              width: MediaQuery.of(context).size.width,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                scrollDirection: Axis.vertical,
-                itemCount: providerIns.jsonResponse.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                      onTap: () {
-                        // providerIns.resetValues();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductScreen(
-                              index: index,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        // height: 165,
-                        width: 140,
-                        margin: const EdgeInsets.all(10),
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.black.withOpacity(.3)),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Center(
-                              child: Image(
-                                image: NetworkImage(
-                                    providerIns.jsonResponse[index]['image']),
-                                fit: BoxFit.fitHeight,
-                                alignment: Alignment.center,
-                                height: 85,
-                                width: 80,
-                              ),
-                            ),
-                            Text(
-                              providerIns.jsonResponse[index]['title'],
-                              maxLines: 2,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                    providerIns.jsonResponse[index]['rating']
-                                            ['rate']
-                                        .toString(),
-                                    style: const TextStyle(
-                                        color: Color(0xFffFBE30))),
-                                const SizedBox(
-                                  width: 8,
+                height: 400,
+                width: MediaQuery.of(context).size.width,
+                child: FutureBuilder(
+                    future: providerIns.getUsers(),
+                    builder: (context, snapshot) {
+                      // if(snapshot.hasData){}
+                      if (!snapshot.hasData) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        scrollDirection: Axis.vertical,
+                        itemCount: providerIns.jsonResponse!.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                              onTap: () {
+                                // providerIns.resetValues();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductScreen(
+                                      index: index,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                // height: 165,
+                                width: 140,
+                                margin: const EdgeInsets.all(10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black.withOpacity(.3)),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                Text(
-                                    '(${providerIns.jsonResponse[index]['rating']['count'].toString()})'),
-                              ],
-                            ),
-                            Text(
-                              '\$${providerIns.jsonResponse[index]['price'].toString()}',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w400),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                          ],
-                        ),
-                      ));
-                },
-              ),
-            )
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Center(
+                                      child: Image(
+                                        image: NetworkImage(providerIns
+                                            .jsonResponse![index]['image']),
+                                        fit: BoxFit.fitHeight,
+                                        alignment: Alignment.center,
+                                        height: 85,
+                                        width: 80,
+                                      ),
+                                    ),
+                                    Text(
+                                      providerIns.jsonResponse![index]['title'],
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                            providerIns.jsonResponse![index]
+                                                    ['rating']['rate']
+                                                .toString(),
+                                            style: const TextStyle(
+                                                color: Color(0xFffFBE30))),
+                                        const SizedBox(
+                                          width: 8,
+                                        ),
+                                        Text(
+                                            '(${providerIns.jsonResponse![index]['rating']['count'].toString()})'),
+                                      ],
+                                    ),
+                                    Text(
+                                      '\$${providerIns.jsonResponse![index]['price'].toString()}',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                  ],
+                                ),
+                              ));
+                        },
+                      );
+                    }))
           ],
         ),
       ),

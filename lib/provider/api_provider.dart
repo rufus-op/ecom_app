@@ -31,7 +31,7 @@ class ApiProvider extends ChangeNotifier {
   int selectedPage = 0;
   double subTotal = 0;
 
- double calculateSubTotal() {
+  double calculateSubTotal() {
     subTotal = cart.fold(0, (sum, item) => sum + item.price);
     return subTotal;
   }
@@ -42,14 +42,10 @@ class ApiProvider extends ChangeNotifier {
     return total.toStringAsFixed(1);
   }
 
-  favButton() {
-    if (isFav == true) {
-      return isFav = false;
-    } else if (isFav == false) {
-      return isFav == true;
-    }
-    notifyListeners();
-  }
+  // favButton() {
+  //   isFav != isFav;
+  //   notifyListeners();
+  // }
 
   List<ProductModel> cart = [];
 
@@ -78,7 +74,7 @@ class ApiProvider extends ChangeNotifier {
   }
 
   // ignore: prefer_typing_uninitialized_variables
-  var jsonResponse;
+  List? jsonResponse;
   getUsers() async {
     loading = true;
 
@@ -86,6 +82,7 @@ class ApiProvider extends ChangeNotifier {
         await http.get(Uri.parse('https://fakestoreapi.com/products'));
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
+      return jsonResponse;
     } else {
       throw Exception('Failed to load data');
     }

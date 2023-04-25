@@ -1,5 +1,7 @@
 import 'package:apple_store/provider/api_provider.dart';
+import 'package:apple_store/services/gmaps.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/custom_button.dart';
@@ -175,15 +177,24 @@ class PaymentScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: const Image(
-                      height: 80,
-                      width: 110,
-                      image: NetworkImage(
-                          'https://ak.picdn.net/shutterstock/videos/4677119/thumb/2.jpg'),
-                      fit: BoxFit.cover,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Gmaps(),
+                          ));
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: const Image(
+                        height: 80,
+                        width: 110,
+                        image: NetworkImage(
+                            'https://ak.picdn.net/shutterstock/videos/4677119/thumb/2.jpg'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(
