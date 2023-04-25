@@ -182,7 +182,7 @@ class PaymentScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Gmaps(),
+                            builder: (context) => const Gmaps(),
                           ));
                     },
                     child: ClipRRect(

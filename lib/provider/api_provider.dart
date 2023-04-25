@@ -22,7 +22,7 @@ class ApiProvider extends ChangeNotifier {
   int newprice = 0;
   int discount = 99;
 
-  int number = 0;
+  int number = 1;
   bool isFav = false;
   bool isLoading = false;
   String userName = 'User';
@@ -67,7 +67,7 @@ class ApiProvider extends ChangeNotifier {
   }
 
   decrement() {
-    if (number > 0) {
+    if (number > 1) {
       number--;
       notifyListeners();
     }

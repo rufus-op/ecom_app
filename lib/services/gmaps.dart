@@ -27,10 +27,7 @@ class _GmapsState extends State<Gmaps> {
         markerId: MarkerId('1'),
         infoWindow: InfoWindow(title: 'Rauf Location'),
         position: LatLng(37.42796133580664, -122.085749655962)),
-    const Marker(
-        markerId: MarkerId('1'),
-        infoWindow: InfoWindow(title: 'abdul Location'),
-        position: LatLng(36.42796133580664, -120.085749655962))
+   
   ];
   @override
   void initState() {
