@@ -220,12 +220,15 @@ class Home extends StatelessWidget {
                                         height: 8,
                                       ),
                                       Center(
-                                        child: Image(
-                                          image: NetworkImage(providerIns
-                                              .jsonResponse![index]['image']),
-                                          fit: BoxFit.contain,
-                                          alignment: Alignment.center,
-                                          height: 85,
+                                        child: Hero(
+                                          tag: index,
+                                          child: Image(
+                                            image: NetworkImage(providerIns
+                                                .jsonResponse![index]['image']),
+                                            fit: BoxFit.contain,
+                                            alignment: Alignment.center,
+                                            height: 85,
+                                          ),
                                         ),
                                       ),
                                       Text(
@@ -341,13 +344,16 @@ class Home extends StatelessWidget {
                                       height: 8,
                                     ),
                                     Center(
-                                      child: Image(
-                                        image: NetworkImage(providerIns
-                                            .jsonResponse![index]['image']),
-                                        fit: BoxFit.fitHeight,
-                                        alignment: Alignment.center,
-                                        height: 85,
-                                        width: 80,
+                                      child: Hero(
+                                        tag: index,
+                                        child: Image(
+                                          image: NetworkImage(providerIns
+                                              .jsonResponse![index]['image']),
+                                          fit: BoxFit.fitHeight,
+                                          alignment: Alignment.center,
+                                          height: 85,
+                                          width: 80,
+                                        ),
                                       ),
                                     ),
                                     Text(

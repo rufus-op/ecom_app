@@ -82,11 +82,11 @@ class ApiProvider extends ChangeNotifier {
         await http.get(Uri.parse('https://fakestoreapi.com/products'));
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
+      loading = false;
+      notifyListeners();
       return jsonResponse;
     } else {
       throw Exception('Failed to load data');
     }
-    loading = false;
-    notifyListeners();
   }
 }

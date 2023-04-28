@@ -48,13 +48,15 @@ class ProductScreen extends StatelessWidget {
                             width: 20,
                           ),
                           Center(
-                            child: Image(
-                              image: NetworkImage(
-                                providerIns.jsonResponse![index]['image'],
+                            child: Hero(tag: index,
+                              child: Image(
+                                image: NetworkImage(
+                                  providerIns.jsonResponse![index]['image'],
+                                ),
+                                fit: BoxFit.contain,
+                                height: 200,
+                                width: 240,
                               ),
-                              fit: BoxFit.contain,
-                              height: 200,
-                              width: 240,
                             ),
                           ),
                           const Expanded(
