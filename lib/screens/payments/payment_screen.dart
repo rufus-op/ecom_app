@@ -120,9 +120,14 @@ class PaymentScreen extends StatelessWidget {
                       //   builder: (context) {},
                       // );
                       showModalBottomSheet(
-                        context: context,
+                        context: context,isScrollControlled: true,
                         builder: (context) {
-                          return Container(
+                          return BottomSheet(
+                            onClosing: () {
+                              
+                            },
+                            builder: (context) {
+                              return   Container(
                             padding: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
@@ -162,6 +167,9 @@ class PaymentScreen extends StatelessWidget {
                               ],
                             ),
                           );
+                            },
+                          );
+                        
                         },
                       );
                     },
@@ -268,7 +276,7 @@ class PaymentScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
-                            'Credit Card',
+                            'Cash on Delivery',
                             style: TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 18),
                           ),

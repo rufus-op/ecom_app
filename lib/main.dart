@@ -1,7 +1,9 @@
 import 'package:apple_store/provider/api_provider.dart';
+import 'package:apple_store/provider/session_manager_provider.dart';
 // import 'package:apple_store/provider/cart_provider.dart';
 
 import 'package:apple_store/screens/login_screen.dart';
+import 'package:apple_store/screens/splash_screen.dart';
 // import 'package:apple_store/screens/payments/payment_screen.dart';
 // import 'package:apple_store/screens/product_screen.dart';
 // import 'package:apple_store/screens/signup_screen.dart';
@@ -28,9 +30,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ApiProvider(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => CartProvider(),
-        // )
+        ChangeNotifierProvider(
+          create: (context) => SessionManager(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -39,26 +41,18 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
                 elevation: 0,
                 titleTextStyle: TextStyle(color: Colors.black))),
-        // initialRoute: '/register',
-        home: StreamBuilder(
-          stream: FirebaseAuthF().auth.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return FirstScreen();
-            } else {
-              return LoginPage();
-            }
-          },
-        ),
 
-        // routes: {
-        //   '/home': (context) =>
-        //       HomeScreen(Provider.of<ApiProvider>(context).userName),
-        //   '/register': (context) => RegisterPage(),
-        //   // '/product': (context) => ProductScreen(),
-        //   '/payment': (context) => PaymentScreen(),
-        //   // '/cart': (context) =>  CartScreen(),
-        // },
+        // home: StreamBuilder(
+        //   stream: FirebaseAuthF().auth.authStateChanges(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasData) {
+        //       return const FirstScreen();
+        //     } else {
+        //       return LoginPage();
+        //     }
+        //   },
+        // ),
+        home: const SplashScreen(),
       ),
     );
   }

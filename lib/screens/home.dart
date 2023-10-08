@@ -150,11 +150,11 @@ class Home extends StatelessWidget {
               height: 15,
             ),
             //trending + see all
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Trending',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -177,95 +177,89 @@ class Home extends StatelessWidget {
                 future: providerIns.getUsers(),
                 builder: (context, snapshot) {
                   // if(snapshot.hasData){}
-                  if (!snapshot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  return providerIns.isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: providerIns.jsonResponse!.length,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                                onTap: () {
-                                  // providerIns.resetValues();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ProductScreen(
-                                        index: index,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  // height: 165,
-                                  width: 140,
-                                  margin: const EdgeInsets.all(10),
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black.withOpacity(.3)),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Center(
-                                        child: Hero(
-                                          tag: index,
-                                          child: Image(
-                                            image: NetworkImage(providerIns
-                                                .jsonResponse![index]['image']),
-                                            fit: BoxFit.contain,
-                                            alignment: Alignment.center,
-                                            height: 85,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        providerIns.jsonResponse![index]
-                                            ['title'],
-                                        maxLines: 2,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                              providerIns.jsonResponse![index]
-                                                      ['rating']['rate']
-                                                  .toString(),
-                                              style: const TextStyle(
-                                                  color: Color(0xFffFBE30))),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          Text(
-                                              '(${providerIns.jsonResponse![index]['rating']['count'].toString()})'),
-                                        ],
-                                      ),
-                                      Text(
-                                        '\$${providerIns.jsonResponse![index]['price'].toString()}',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                    ],
-                                  ),
-                                ));
+                  // if (!snapshot.hasData) {
+                  //   return const Center(child: CircularProgressIndicator());
+                  // }
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: providerIns.jsonResponse!.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                          onTap: () {
+                            // providerIns.resetValues();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductScreen(
+                                  index: index,
+                                ),
+                              ),
+                            );
                           },
-                        );
+                          child: Container(
+                            // height: 165,
+                            width: 140,
+                            margin: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black.withOpacity(.3)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Center(
+                                  child: Hero(
+                                    tag: index,
+                                    child: Image(
+                                      image: NetworkImage(providerIns
+                                          .jsonResponse![index]['image']),
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment.center,
+                                      height: 85,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  providerIns.jsonResponse![index]['title'],
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                        providerIns.jsonResponse![index]
+                                                ['rating']['rate']
+                                            .toString(),
+                                        style: const TextStyle(
+                                            color: Color(0xFffFBE30))),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                        '(${providerIns.jsonResponse![index]['rating']['count'].toString()})'),
+                                  ],
+                                ),
+                                Text(
+                                  '\$${providerIns.jsonResponse![index]['price'].toString()}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                              ],
+                            ),
+                          ));
+                    },
+                  );
                 },
               ),
             ),
@@ -273,11 +267,11 @@ class Home extends StatelessWidget {
               height: 15,
             ),
             //recently viewed
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Recently Viewed',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -294,6 +288,7 @@ class Home extends StatelessWidget {
               height: 10,
             ),
             //items grid
+
             SizedBox(
                 height: 400,
                 width: MediaQuery.of(context).size.width,
@@ -301,9 +296,9 @@ class Home extends StatelessWidget {
                     future: providerIns.getUsers(),
                     builder: (context, snapshot) {
                       // if(snapshot.hasData){}
-                      if (!snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
+                      // if (!snapshot.hasData) {
+                      //   return const Center(child: CircularProgressIndicator());
+                      // }
                       return GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -344,16 +339,13 @@ class Home extends StatelessWidget {
                                       height: 8,
                                     ),
                                     Center(
-                                      child: Hero(
-                                        tag: index,
-                                        child: Image(
-                                          image: NetworkImage(providerIns
-                                              .jsonResponse![index]['image']),
-                                          fit: BoxFit.fitHeight,
-                                          alignment: Alignment.center,
-                                          height: 85,
-                                          width: 80,
-                                        ),
+                                      child: Image(
+                                        image: NetworkImage(providerIns
+                                            .jsonResponse![index]['image']),
+                                        fit: BoxFit.fitHeight,
+                                        alignment: Alignment.center,
+                                        height: 85,
+                                        width: 80,
                                       ),
                                     ),
                                     Text(

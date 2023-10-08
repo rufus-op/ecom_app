@@ -4,6 +4,7 @@ import 'package:apple_store/screens/signup_screen.dart';
 import 'package:apple_store/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
@@ -27,20 +28,14 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(
                   height: 18,
                 ),
-                Row(children: const [
-                  Text(
-                    'Welcome',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 19,
-                      color: Color(0xFffFBE30),
-                    ),
+                const Text(
+                  'Welcome',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Color(0xFffFBE30),
                   ),
-                  Text(
-                    ' to the Course App',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                ]),
+                ),
 
                 const SizedBox(
                   height: 10,
@@ -110,7 +105,13 @@ class LoginPage extends StatelessWidget {
                     // ignore: use_build_context_synchronously
                     Provider.of<ApiProvider>(context, listen: false)
                         .dontshowLoading();
+                    await newUser!.getIdToken();
                     if (newUser != null) {
+                      // ignore: use_build_context_synchronously
+                      SharedPreferences sp =
+                          await SharedPreferences.getInstance();
+                      await sp.setString(
+                          'token', newUser.getIdToken().toString());
                       // ignore: use_build_context_synchronously
                       Navigator.push(
                           context,

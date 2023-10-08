@@ -1,9 +1,18 @@
 # This is a generated file; do not edit or check into version control.
-firebase_auth=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_auth-4.2.9\\
-firebase_auth_web=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_auth_web-5.2.8\\
-firebase_core=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_core-2.7.0\\
-firebase_core_web=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_core_web-2.2.1\\
-flutter_plugin_android_lifecycle=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\flutter_plugin_android_lifecycle-2.0.9\\
-google_maps_flutter=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter-2.2.5\\
-google_maps_flutter_android=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter_android-2.4.10\\
-google_maps_flutter_ios=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter_ios-2.2.1\\
+firebase_auth=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_auth-4.10.0\\
+firebase_auth_web=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_auth_web-5.8.1\\
+firebase_core=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_core-2.16.0\\
+firebase_core_web=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_core_web-2.8.0\\
+flutter_plugin_android_lifecycle=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\flutter_plugin_android_lifecycle-2.0.16\\
+google_maps_flutter=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter-2.5.0\\
+google_maps_flutter_android=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter_android-2.5.1\\
+google_maps_flutter_ios=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter_ios-2.3.1\\
+google_maps_flutter_web=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\google_maps_flutter_web-0.5.4+2\\
+path_provider_linux=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_linux-2.2.1\\
+path_provider_windows=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_windows-2.2.1\\
+shared_preferences=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences-2.2.1\\
+shared_preferences_android=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_android-2.2.1\\
+shared_preferences_foundation=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_foundation-2.3.4\\
+shared_preferences_linux=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_linux-2.3.1\\
+shared_preferences_web=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_web-2.2.1\\
+shared_preferences_windows=C:\\Users\\dell\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_windows-2.3.1\\

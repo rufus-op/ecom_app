@@ -7,7 +7,6 @@ import 'package:apple_store/models/product_model.dart';
 import 'package:flutter/foundation.dart';
 // import 'package:apple_store/services/api_get_service.dart';
 import 'package:http/http.dart' as http;
-
 // import '../models/me_products_model.dart';
 
 class ApiProvider extends ChangeNotifier {
@@ -76,13 +75,12 @@ class ApiProvider extends ChangeNotifier {
   // ignore: prefer_typing_uninitialized_variables
   List? jsonResponse;
   getUsers() async {
-    loading = true;
-
+  
     final response =
         await http.get(Uri.parse('https://fakestoreapi.com/products'));
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
-      loading = false;
+ 
       notifyListeners();
       return jsonResponse;
     } else {
