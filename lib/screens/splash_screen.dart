@@ -1,3 +1,4 @@
+import 'package:apple_store/provider/api_provider.dart';
 import 'package:apple_store/provider/session_manager_provider.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    Provider.of<ApiProvider>(context, listen: false).getUsers();
+
     Future.delayed(const Duration(seconds: 3)).then((value) {
       Provider.of<SessionManager>(context, listen: false)
           .sessionManager(context);
